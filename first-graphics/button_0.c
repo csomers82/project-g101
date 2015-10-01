@@ -31,6 +31,13 @@ struct Vertex {
 	float A;
 };
 
+struct Vector {
+	float X;
+	float Y;
+	float Z;
+	float magnitude;
+};
+
 unsigned int X;
 unsigned int Y;
 unsigned int Width;
@@ -425,8 +432,6 @@ void Init_Gs(struct Vertex * polygon)
 
 }
 
-void 
-
 int collision_mouse_convex_polygon(struct Vertex * polygon, int n_vert)
 {
 	struct Vertex * v;// 
@@ -437,12 +442,22 @@ int collision_mouse_convex_polygon(struct Vertex * polygon, int n_vert)
 
 int collision_mouse_circle(float cvx, float cvy, float cr)
 {
-	float distance = sqrt(pow(norm_X - cvx, 2) + pow(norm_Y - cvy, 2));
-
-	printf("  radius - distance\n%8.5f - %-8.5f\n", cr, distance);
-	if(distance == cr) return(2);
-	else if(distance < cr) return(1);
+	float d2 = (pow(norm_X - cvx, 2) + pow(norm_Y - cvy, 2));
+	float r2 = pow(cr, 2);
+	printf("  radius - distance\n%8.5f - %-8.5f\n", r2, d2);
+	if(d2 == r2) return(2);
+	else if(d2 < r2) return(1);
 	return(0);
+}
+
+
+struct Vector * cross_product(const struct Vector vectorA, const struct Vector vectorB)
+{	/* FIRST DRAFT - SOMEWHAT TEMPORARY */
+	float i = vectorA.Y * vectorB.Z - vectorA.Z * vectorB.Y;
+	float j = vectorA.X * vectorB.Z - vectorA.Z * vectorB.X;
+	float k = vectorA.X * vectorB.Y - vectorA.Y * vectorB.X;
+	struct Vector * cross_product = vertex_create( i, j, k);
+	return(cross_product);
 }
 
 
