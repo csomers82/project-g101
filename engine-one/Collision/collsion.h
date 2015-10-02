@@ -15,12 +15,17 @@
 
 
 
+int collision_mouse_convex_polygon(struct Vertex * POLYGON, int NUMBEROFVERTICES);
 
 
 
-
+int collision_mouse_circle(float CIRCLEXPOSITION, float CIRCLEYPOSITION, float RADIUS);
 
 
 
 
 #endif
+
+
+
+

@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <time.h>
@@ -76,6 +76,31 @@ void init_Triangle(struct Vertex * T, float r, float g, float b)
 	init_Vertex(&(T[1]), T[1].X, T[1].Y,  r,  g,  b);
 	init_Vertex(&(T[2]), T[2].X, T[2].Y,  r,  g,  b);
 
+}
+
+
+struct Vertex * create_axis_aligned_rectangle(float x, float y, float h, float w)
+{
+	float hhalf = h / 2.00f;
+	float whalf = w / 2.00f;
+
+
+	// ensure that the box will not have any component that is off of the screen
+
+	// in the X direction: center +/- w/2
+	if((x - whalf < 0.0f) || (x + whalf > 0.0f)) 
+		return NULL;
+
+	// in the Y direction: center +/- h/2
+	if((y - hhalf < 0.0f) || (y + hhalf > 1.0f)) 
+		return NULL;
+	
+
+	struct Vertex * box = malloc(sizeof(struct Vertex) * 6);
+
+
+
+	return(box);
 }
 
 

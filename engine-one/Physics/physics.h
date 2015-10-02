@@ -17,7 +17,16 @@ struct Vector {
 };
 
 
+struct Vector * vector_create(float x, float y, float z)
+
+void vector_destroy(struct Vector * vic)
 
 
 
 #endif
+
+
+
+
+
+
