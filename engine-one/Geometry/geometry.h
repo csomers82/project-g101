@@ -12,8 +12,7 @@
 #ifndef EO_GEOMETRY
 #define EO_GEOMETRY
 
-
-struct Vertex {
+typedef struct {
 	float X;
 	float Y;
 	float Z;
@@ -21,16 +20,13 @@ struct Vertex {
 	float G;
 	float B;
 	float A;
-};
+} Vertex;
 
 
 
-void init_Vertex(struct Vertex * V, float x, float y, float r, float g, float b) 
-
-struct Vertex * create_regular_polygon(float orig_x, float orig_y, float radius)
-
-void init_Triangle(struct Vertex * T, float r, float g, float b)
-
+void init_Vertex(Vertex * V, float x, float y, float r, float g, float b) ;
+struct Vertex * create_regular_polygon(float orig_x, float orig_y, float radius);
+void init_Triangle(Vertex * T, float r, float g, float b);
 
 
 

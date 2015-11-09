@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-
+#include "Mathematics.h" 
+#include "../Geometry/geometry.h"
+#include "../Physics/physics.h"
 
 
 float * matrix_multiply(float * mat1, int cols_m1, int rows_m1,
@@ -80,12 +79,12 @@ float * affine_transformation_2d(float local_orig[2], float reference[2], float 
 
 
 
-struct Vector * cross_product(const struct Vector vectorA, const struct Vector vectorB)
+Vector * cross_product(Vector vectorA, Vector vectorB)
 {	/* FIRST DRAFT - SOMEWHAT TEMPORARY */
 	float i = vectorA.Y * vectorB.Z - vectorA.Z * vectorB.Y;
 	float j = vectorA.X * vectorB.Z - vectorA.Z * vectorB.X;
 	float k = vectorA.X * vectorB.Y - vectorA.Y * vectorB.X;
-	struct Vector * cross_product = vertex_create( i, j, k);
+	Vector * cross_product = vertex_create( i, j, k);
 	return(cross_product);
 }
 

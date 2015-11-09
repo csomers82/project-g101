@@ -6,11 +6,11 @@
 #include <assert.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
+#include "geometry.h"
 
 
 
-
-void init_Vertex(struct Vertex * V, float x, float y, float r, float g, float b) 
+void init_Vertex(Vertex * V, float x, float y, float r, float g, float b) 
 {	
 	// initializes vertex to (x,y) w/ RGBA = {0, 0, 0, 1}
 	(*V).Y = y;
@@ -25,9 +25,9 @@ void init_Vertex(struct Vertex * V, float x, float y, float r, float g, float b)
 
 
 
-struct Vertex * create_regular_polygon(float orig_x, float orig_y, float radius)
+Vertex * create_regular_polygon(float orig_x, float orig_y, float radius)
 {
-	struct Vertex * polygon = malloc(sizeof(struct Vertex) * 3 * N_VERTICES);
+	Vertex * polygon = malloc(sizeof(Vertex) * 3 * N_VERTICES);
 	double delta_theta = (M_PI) / (N_VERTICES / 2.0000000f);
 	double angle;// rotation about the normal angle
 	int vertex_i;
@@ -70,7 +70,7 @@ struct Vertex * create_regular_polygon(float orig_x, float orig_y, float radius)
 	return(polygon);
 }
 
-void init_Triangle(struct Vertex * T, float r, float g, float b)
+void init_Triangle(Vertex * T, float r, float g, float b)
 {
 	init_Vertex(&(T[0]), T[0].X, T[0].Y,  r,  g,  b);
 	init_Vertex(&(T[1]), T[1].X, T[1].Y,  r,  g,  b);
@@ -79,7 +79,7 @@ void init_Triangle(struct Vertex * T, float r, float g, float b)
 }
 
 
-struct Vertex * create_axis_aligned_rectangle(float x, float y, float h, float w)
+Vertex * create_axis_aligned_rectangle(float x, float y, float h, float w)
 {
 	float hhalf = h / 2.00f;
 	float whalf = w / 2.00f;
@@ -94,11 +94,37 @@ struct Vertex * create_axis_aligned_rectangle(float x, float y, float h, float w
 	// in the Y direction: center +/- h/2
 	if((y - hhalf < 0.0f) || (y + hhalf > 1.0f)) 
 		return NULL;
-	
-
-	struct Vertex * box = malloc(sizeof(struct Vertex) * 6);
 
 
+	Vertex * box = malloc(sizeof(Vertex) * 6);
+	int i = 0;
+
+	// set all vertex properties to 0.0f 
+	memset(box, 0, sizeof((Vertex)*6);
+
+	box[i].X = x + whalf;// top right corner
+	box[i].Y = y + hhalf;//			.	
+	box[i].Z = 0.0f;	 // 
+	++i;
+	box[i].X = x - whalf;// top left corner
+	box[i].Y = y + hhalf;//		.....
+	box[i].Z = 0.0f;	 //
+	++i;
+	box[i].X = x - whalf;// bot left corner 
+	box[i].Y = y - hhalf;//		....
+	box[i].Z = 0.0f;	 //     |    
+	++i;
+	box[i].X = x - whalf;// bot left corner 
+	box[i].Y = y - hhalf;//
+	box[i].Z = 0.0f;     //     .
+	++i;
+	box[i].X = x + whalf;// bot right corner
+	box[i].Y = y - hhalf;//
+	box[i].Z = 0.0f;	 //		....
+	++i;
+	box[i].X = x + whalf;// top right corner
+	box[i].Y = y + hhalf;//		   .
+	box[i].Z = 0.0f;	 //		...|
 
 	return(box);
 }

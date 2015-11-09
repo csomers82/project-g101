@@ -10,16 +10,16 @@
 #ifndef EO_PHYSICS
 #define EO_PHYSICS
 
-struct Vector {
+typedef struct {
 	float X;
 	float Y;
 	float Z;
-};
+} Vector;
 
 
-struct Vector * vector_create(float x, float y, float z)
+Vector * vector_create(float x, float y, float z);
 
-void vector_destroy(struct Vector * vic)
+void vector_destroy(Vector * vic);
 
 
 

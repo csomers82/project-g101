@@ -4,21 +4,21 @@
 #include <math.h>
 #include <time.h>
 #include <assert.h>
+#include "physics.h"
+#include "../Mathematics/mathematics.h"
+#include "../Geometry/geomtry.h"
 
 
-
-
-
-struct Vector * vector_create(float x, float y, float z)
+Vector * vector_create(float x, float y, float z)
 {
-	struct Vector * vector = malloc(sizeof(struct Vector));
+	Vector * vector = malloc(sizeof(Vector));
 	vector.X = x;
 	vector.Y = y;
 	vector.Z = z;
 	return(vector);
 }
 
-void vector_destroy(struct Vector * vic)
+void vector_destroy(Vector * vic)
 {	
 	free(vic);
 }
